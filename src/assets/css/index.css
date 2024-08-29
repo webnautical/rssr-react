@@ -1,0 +1,20 @@
+
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+    border-color: var(--ck-color-base-border);
+    height: 300px;
+}
+
+
+/* nav{ background-color: #fc8019!important;} */
+
+.navbar-brand-img{        max-height: 5.5rem!important;}
+
+.navbar-brand{ padding-bottom: 0px!important;}
+
+.navbar-nav .nav-link.active{background: antiquewhite;}
+
+.navbar-nav .nav-link i{ color: #9b9592!important;}
+
+.navbar-nav .nav-link.active i{ color: #ff6e1e!important;}
+
+.navbar-vertical.navbar-expand-md .navbar-nav .nav-link.active:before{border-left: none!important;}

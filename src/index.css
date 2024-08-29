@@ -1,0 +1,211 @@
+@media screen and (min-width: 1400px) {
+  .container {
+    max-width: 1490px;
+  }
+}
+
+.errorMsg {
+  color: rgb(163, 5, 5);
+  font-size: 14px;
+}
+
+.error_outline {
+  border: 1px solid red !important;
+}
+
+.global_arrow {
+  position: relative;
+}
+
+.cus_arrow {
+  position: absolute;
+  right: 8px;
+  bottom: 10px;
+  color: #5f15b8;
+}
+
+button.table-icon {
+  margin-right: 10px;
+  background-color: #5e72e4;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.selectDropdown {
+  width: 83%;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.global-color {
+  background: linear-gradient(180deg, #ff671f 0%, #fc8019 100%) !important;
+}
+
+.my-3 {
+  background-color: #f8f9fa;
+  /* Add your desired background color */
+  padding: 10px;
+  /* Add padding for better appearance */
+  border-radius: 5px;
+  /* Add border radius for rounded corners */
+}
+
+.loadingBox {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  background: #00000085;
+  width: 100%;
+  align-items: center;
+  z-index: 99;
+  left: 0px;
+  top: 0;
+  overflow: hidden;
+}
+
+.loadingBox .content {
+
+  height: 80px;
+  width: 80px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0.125rem 0.25rem rgba(165, 163, 174, .3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--main-color);
+}
+
+
+
+
+.button1 {
+  display: block !important;
+  text-decoration: none !important;
+  color: white !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  display: inline-block !important;
+  background: linear-gradient(180deg, #ff671f 0%, #9f3604 100%) !important;
+  border-radius: 5px !important;
+  z-index: 0 !important;
+  position: relative !important;
+  padding: 10px 45px !important;
+  overflow: hidden !important;
+  font-weight: 500 !important;
+  text-transform: capitalize !important;
+}
+
+.button1:before {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background: rgba(255, 255, 255, 0.1);
+  transition: 0.3s ease-in;
+}
+
+.button1:hover:before {
+  left: 0;
+  transition: 0.3s ease-out;
+}
+
+.button1:after {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background: rgba(255, 255, 255, 0.1);
+  transition: 0.6s ease-in;
+}
+
+.button1:hover:after {
+  left: 0;
+  transition: 0.6s ease-out;
+}
+
+
+.log_in_logo img {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.global_btn {
+  background-color: transparent;
+  border: 1px solid #ff671f;
+  color: #ff671f;
+  padding: 6px 60px;
+  border-radius: 5px;
+  transition: 0.6s;
+}
+
+.global_btn:hover {
+  background-color: #ff671f;
+  color: white;
+  transition: 0.6s;
+}
+
+.cs_table input {
+  background-color: black !important;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+
+}
+
+
+h3 {
+  font-size: 20px !important;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 20px !important;
+  font-weight: 700;
+}
+
+
+.MuiPagination-outlined {
+  background-color: white !important;
+  justify-content: center;
+  padding: 20px 0;
+  border-right: unset !important;
+}
+
+input:focus {
+  box-shadow: none !important;
+}
+
+select:focus {
+  box-shadow: none !important;
+}
+
+
+
+.account_deletion textarea:focus {
+  padding: 0.375rem 0.75rem !important;
+  box-shadow: none !important;
+}
+
+.account_deletion_root {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.account_deletion textarea.error_outline{
+  padding: 0.375rem 0.75rem !important;
+
+}
