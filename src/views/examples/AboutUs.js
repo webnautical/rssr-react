@@ -19,7 +19,7 @@ const AboutUs = () => {
     getAboutUsData();
   }, []);
   const getAboutUsData = () => {
-    fetch(`https://rss.itworkshop.in/admin/getAboutUs`, {
+    fetch(`https://rssr.itdeed.com/admin/getAboutUs`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

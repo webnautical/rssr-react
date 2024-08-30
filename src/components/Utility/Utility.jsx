@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 var CryptoJS = require("crypto-js");
 
 export const apiBaseURL = () => {
-  return "https://rss.itworkshop.in";
+  return "https://rssr.itdeed.com";
 };
 
 export const auth = () => {

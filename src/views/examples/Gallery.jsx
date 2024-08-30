@@ -147,7 +147,7 @@ const Gallery = () => {
 
     const removedImageUrl = imgPreview.images[index];
     const cleanedUrl = removedImageUrl.substring(
-      "https://rss.itworkshop.in/".length
+      "https://rssr.itdeed.com/".length
     );
     setRemoved([...removed, cleanedUrl]);
   };

@@ -1,5 +1,5 @@
 const config = {
-    url: `https://rss.itworkshop.in`
+    url: `https://rssr.itdeed.com`
   };
   
   export default config;
