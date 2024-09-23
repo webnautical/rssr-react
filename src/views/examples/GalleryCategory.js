@@ -119,7 +119,7 @@ export const GalleryCategory = () => {
       setLoading(false);
       if (res.data.status === 200) {
         toastifySuccess(res.data.message || "Record updated successfully");
-        getDistrictEntries();
+        getDistrictEntries()
         setShow(false);
         setNewDistrict("");
         setUpdatedData(null);
@@ -199,7 +199,7 @@ export const GalleryCategory = () => {
     try {
       setLoading(true);
       const data = { name: newDistrict };
-      if (!newDistrict.trim()) {
+      if (newDistrict == "") {
         toastifyError("Name is required");
         return;
       }
@@ -216,15 +216,10 @@ export const GalleryCategory = () => {
       const resJson = await res.json();
 
       if (resJson.status === 200) {
-        // Update districts in state after successful creation
-        setEntryDetail((prevState) => ({
-          ...prevState,
-          data: [...prevState.data, data],
-        }));
+        getDistrictEntries()
         toastifySuccess("  Record saved successfully!");
-        setOpen(true); // Show success snackbar
-        setNewDistrict(""); // Clear input field
-        // toastifySuccess("Register successfully!!")
+        setOpen(true); 
+        setNewDistrict("");
       } else {
         // Handle error response if needed
         setLoading(false);
@@ -234,8 +229,6 @@ export const GalleryCategory = () => {
     } catch (error) {
       setLoading(false);
       console.error("Error:", error);
-     
-
       toastifyError(error?.resJson?.message);
     }
   };
@@ -253,6 +246,7 @@ export const GalleryCategory = () => {
     const res = entryDetail?.slice(0, newValue);
     setEntryDetail(res);
   };
+
 
   return (
     <>
@@ -286,9 +280,6 @@ export const GalleryCategory = () => {
                   <button
                     className="border-0 cancel_btn mx-2"
                     onClick={() => {
-                      // setUpdData(null);
-                      // setSelectedDistrict("");
-                      //  setNewBlock("");
                       setNewDistrict("");
                       setUpdatedData(null);
                       setShow(false);
