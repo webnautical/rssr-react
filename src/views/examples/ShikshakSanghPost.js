@@ -535,7 +535,7 @@ const ShikshakSanghPost = () => {
                         </TableCell>
                         <TableCell>
                           <Switch
-                            checked={row?.is_deleted}
+                            checked={!row?.is_deleted}
                             onChange={() => handleDelete(row)}
                             name="loading"
                             color="success"
