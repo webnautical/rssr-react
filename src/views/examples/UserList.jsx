@@ -24,7 +24,7 @@ import {
 import { toastifySuccess } from 'components/Utility/Utility';
 import { toastifyError } from 'components/Utility/Utility';
 import { rowPerPageInTable } from 'components/Utility/Utility';
-
+import { CSVLink } from "react-csv";
 
 
 ;
@@ -60,8 +60,8 @@ const UserList = () => {
     const [loading, setLoading] = useState(false);
     const [filteredList, setfilteredList] = useState([]);
     const [membershipStatus, setMembershipStatus] = useState(1);
-const [userRole,setUserRole]=useState("")
-    const STORY_HEADERS_BASE  = [
+    const [userRole, setUserRole] = useState("")
+    const STORY_HEADERS_BASE = [
         {
             prop: "name",
             title: "नाम",
@@ -123,7 +123,7 @@ const [userRole,setUserRole]=useState("")
             title: "स्थायी पता"
         },
         // SECTION - C
-       
+
         {
             prop: "school_name",
             title: "स्कूल के नाम"
@@ -183,7 +183,7 @@ const [userRole,setUserRole]=useState("")
             prop: "workarea_sambhag_name",
             title: "समभाग नाम"
         },
-        
+
         {
             prop: "workarea_sankul_name",
             title: "संकुल नाम"
@@ -194,7 +194,7 @@ const [userRole,setUserRole]=useState("")
             prop: "current_position",
             title: "वर्तमान पद"
         },
-        
+
         {
             prop: "current_duty",
             title: "वर्तमान कर्तव्य"
@@ -203,7 +203,7 @@ const [userRole,setUserRole]=useState("")
             prop: "current_duty_level",
             title: "वर्तमान कर्तव्य स्तर"
         },
-        
+
         {
             prop: "current_duty_start_year",
             title: "वर्तमान कर्तव्य आरंभ वर्ष"
@@ -266,7 +266,7 @@ const [userRole,setUserRole]=useState("")
             prop: "current_duty_level_name",
             title: "वर्तमान कर्तव्य स्तर नाम"
         },
-        
+
         {
             prop: "past_duty_name",
             title: "पिछले कर्तव्य का नाम"
@@ -279,28 +279,29 @@ const [userRole,setUserRole]=useState("")
             prop: "other_duty_level_name",
             title: "अन्य कर्तव्य स्तर का नाम"
         },
-        
+
     ];
     const STORY_HEADERS_UPSHAKHA =
-    [{
-        prop: "button",
-        cell: (row) => (
-            <>
-                <div className="">
+        [{
+            prop: "button",
+            cell: (row) => (
+                <>
+                    <div className="">
 
-                    <select name="status" id="status" className='' value={row?.membership_status} onChange={(e) => { handleMembershipStatus({id:row?.id,status:e.target.value});
-               
-                }}>
-                        <option value="" >Membership status</option>
-                        <option value="Pending" selected>Pending</option>
-                        <option value="Approve">Approve</option>
-                        <option value="Disable">Disable</option>
-                    </select>
-                </div>
-            </>
-        ),
-        title: "सदस्यता की स्थिति"
-    }]
+                        <select name="status" id="status" className='' value={row?.membership_status} onChange={(e) => {
+                            handleMembershipStatus({ id: row?.id, status: e.target.value });
+
+                        }}>
+                            <option value="" >Membership status</option>
+                            <option value="Pending" selected>Pending</option>
+                            <option value="Approve">Approve</option>
+                            <option value="Disable">Disable</option>
+                        </select>
+                    </div>
+                </>
+            ),
+            title: "सदस्यता की स्थिति"
+        }]
     const getHeadersBasedOnRole = () => {
         if (userRole === "upshakha") {
             return [...STORY_HEADERS_BASE, ...STORY_HEADERS_UPSHAKHA];
@@ -308,7 +309,7 @@ const [userRole,setUserRole]=useState("")
             return STORY_HEADERS_BASE;
         }
     };
-    
+
     const STORY_HEADERS = getHeadersBasedOnRole();
     const [filters, setFilters] = useState({
         filter1: "",
@@ -323,7 +324,7 @@ const [userRole,setUserRole]=useState("")
     })
 
     useEffect(() => {
-       
+
         // console.log("token", token)
         getUserDetails();
         const data = getAllLocatData()?.role;
@@ -478,27 +479,27 @@ const [userRole,setUserRole]=useState("")
         }
     }
     // filter by district 
-    
-    const [filterMap,setFilterMap]=useState([])
-   
-    const pushFilter=(filterObj)=>{
+
+    const [filterMap, setFilterMap] = useState([])
+
+    const pushFilter = (filterObj) => {
         const { filter, id } = filterObj;
-       if(!filterMap.includes(filter)){
-           filterMap.push(filter,id);
-       }
-       else if(id!=""){
-        const findid=filterMap.indexOf(filter);
-        filterMap.splice(findid+1,1,id);
-       }
-       else{
-        const findid=filterMap.indexOf(filter);
-        filterMap.splice(findid,2);
-       }
+        if (!filterMap.includes(filter)) {
+            filterMap.push(filter, id);
+        }
+        else if (id != "") {
+            const findid = filterMap.indexOf(filter);
+            filterMap.splice(findid + 1, 1, id);
+        }
+        else {
+            const findid = filterMap.indexOf(filter);
+            filterMap.splice(findid, 2);
+        }
     }
-    
-   
-    const finalFilteredData=()=>{
-        
+
+
+    const finalFilteredData = () => {
+
         const filteredData = userList?.filter(user => {
             for (let i = 0; i < filterMap.length; i += 2) {
                 const key = filterMap[i];
@@ -511,7 +512,7 @@ const [userRole,setUserRole]=useState("")
         });
         setfilteredList(filteredData);
     }
-    
+
 
     if (userList?.length > 0) {
         let newdata = userList?.map((item, i) => {
@@ -537,14 +538,14 @@ const [userRole,setUserRole]=useState("")
         })
     }
     // membership status
-    const handleMembershipStatus =async (ide) => {
+    const handleMembershipStatus = async (ide) => {
 
         try {
 
-            const {data}=await axios.post(`${config.url}/user/updateMembershipStatus`,ide)
-            
-            setMembershipStatus(membershipStatus+1);
-            if(data.status==200){
+            const { data } = await axios.post(`${config.url}/user/updateMembershipStatus`, ide)
+
+            setMembershipStatus(membershipStatus + 1);
+            if (data.status == 200) {
                 toastifySuccess(data.message || "Updated Successfuly!!");
             }
         } catch (error) {
@@ -552,7 +553,7 @@ const [userRole,setUserRole]=useState("")
             console.log(error);
         }
     }
-  
+
     return (
         <>
             <div className="header global-color pb-8  pt-5 pt-md-8" >
@@ -572,9 +573,10 @@ const [userRole,setUserRole]=useState("")
                                 <div className="">
                                     <select
                                         value={filters.filter6}
-                                        onChange={(e) => { 
-                                            pushFilter({ filter: "workarea_sambhag_name", id: e.target.value}); 
-                                            setFilters({ ...filters, filter6: e.target.value }) }}
+                                        onChange={(e) => {
+                                            pushFilter({ filter: "workarea_sambhag_name", id: e.target.value });
+                                            setFilters({ ...filters, filter6: e.target.value })
+                                        }}
                                         name="workarea_sambhag"
                                         className="selectDropdown form-control form-select mt-2 mx-2"
                                     >
@@ -592,10 +594,11 @@ const [userRole,setUserRole]=useState("")
                                 <div className="">
                                     <select
                                         value={filters.filter1}
-                                        onChange={(e) => { 
-                                            
-                                            pushFilter({ filter: "current_district_name", id: e.target.value }); 
-                                        setFilters({ ...filters, filter1: e.target.value }) }}
+                                        onChange={(e) => {
+
+                                            pushFilter({ filter: "current_district_name", id: e.target.value });
+                                            setFilters({ ...filters, filter1: e.target.value })
+                                        }}
                                         name="current_district"
                                         className="selectDropdown form-control form-select mt-2 mx-2"
                                     >
@@ -613,9 +616,10 @@ const [userRole,setUserRole]=useState("")
                                 <div className="">
                                     <select
                                         value={filters.filter7}
-                                        onChange={(e) => { 
+                                        onChange={(e) => {
                                             pushFilter({ filter: "workarea_district_name", id: e.target.value });
-                                             setFilters({ ...filters, filter7: e.target.value }) }}
+                                            setFilters({ ...filters, filter7: e.target.value })
+                                        }}
                                         name="workarea_district"
                                         className="selectDropdown form-control form-select mt-2 mx-2"
                                     >
@@ -654,9 +658,10 @@ const [userRole,setUserRole]=useState("")
                                 <div className="">
                                     <select
                                         value={filters.filter3}
-                                        onChange={(e) => { 
-                                            pushFilter({ filter: "jila_name", id: e.target.value});
-                                             setFilters({ ...filters, filter3: e.target.value }) }}
+                                        onChange={(e) => {
+                                            pushFilter({ filter: "jila_name", id: e.target.value });
+                                            setFilters({ ...filters, filter3: e.target.value })
+                                        }}
                                         name="jila"
                                         className="selectDropdown form-control form-select mt-2 mx-2"
                                     >
@@ -674,9 +679,10 @@ const [userRole,setUserRole]=useState("")
                                 <div className="">
                                     <select
                                         value={filters.filter4}
-                                        onChange={(e) => { 
-                                            pushFilter({ filter: "block_name", id: e.target.value }); 
-                                            setFilters({ ...filters, filter4: e.target.value }) }}
+                                        onChange={(e) => {
+                                            pushFilter({ filter: "block_name", id: e.target.value });
+                                            setFilters({ ...filters, filter4: e.target.value })
+                                        }}
                                         name="block"
                                         className="selectDropdown form-control form-select mt-2 mx-2"
                                     >
@@ -694,9 +700,10 @@ const [userRole,setUserRole]=useState("")
                                 <div className="">
                                     <select
                                         value={filters.filter5}
-                                        onChange={(e) => { 
-                                            pushFilter({ filter: "peeo_name", id: e.target.value});
-                                             setFilters({ ...filters, filter5: e.target.value }) }}
+                                        onChange={(e) => {
+                                            pushFilter({ filter: "peeo_name", id: e.target.value });
+                                            setFilters({ ...filters, filter5: e.target.value })
+                                        }}
                                         name="peeo"
                                         className="selectDropdown form-control form-select mt-2 mx-2"
                                     >
@@ -711,16 +718,17 @@ const [userRole,setUserRole]=useState("")
                             </Col>
                         </Row>
                         <Row className='mb-4'>
-                            
-                            
+
+
                             <Col md={3}>
                                 {/* upshakha */}
                                 <div className="">
                                     <select
                                         value={filters.filter8}
-                                        onChange={(e) => { 
-                                            pushFilter({ filter: "workarea_upshakha_name", id: e.target.value});
-                                             setFilters({ ...filters, filter8: e.target.value }) }}
+                                        onChange={(e) => {
+                                            pushFilter({ filter: "workarea_upshakha_name", id: e.target.value });
+                                            setFilters({ ...filters, filter8: e.target.value })
+                                        }}
                                         name="workarea_upshakha"
                                         className="selectDropdown form-control form-select mt-2 mx-2"
                                     >
@@ -738,11 +746,12 @@ const [userRole,setUserRole]=useState("")
                                 <div className="">
                                     <select
                                         value={filters.filter9}
-                                        onChange={(e) => { 
-                                            
+                                        onChange={(e) => {
+
                                             pushFilter({ filter: "workarea_sankul_name", id: e.target.value });
-                                       
-                                        setFilters({ ...filters, filter9: e.target.value }) }}
+
+                                            setFilters({ ...filters, filter9: e.target.value })
+                                        }}
                                         name="workarea_sankul"
                                         className="selectDropdown form-control form-select mt-2 mx-2"
                                     >
@@ -772,11 +781,31 @@ const [userRole,setUserRole]=useState("")
                                 paginationOptionsProps={{
                                     initialState: {
                                         rowsPerPage: rowPerPageInTable,
-                                        options: [50,100,200,500,1000]
+                                        options: [50, 100, 200, 500, 1000]
                                     }
                                 }}
                             >
                                 <Row className="mb-4 p-2">
+                                    <Col
+                                        xs={12}
+                                        lg={12}
+                                    >
+                                        <div style={{ marginBottom: "1rem", display: "flex", justifyContent: "flex-end" }}>
+                                            <CSVLink
+                                                data={filteredList ? filteredList : userList ?? []}
+                                                headers={STORY_HEADERS.map(({ title, prop }) => ({
+                                                    label: title,
+                                                    key: prop,
+                                                }))}
+                                                filename={"user-list.csv"}
+                                                className="btn btn-primary"
+                                                target="_blank"
+                                            >
+                                                Export to CSV
+                                            </CSVLink>
+                                        </div>
+
+                                    </Col>
                                     <Col
                                         xs={12}
                                         lg={4}
